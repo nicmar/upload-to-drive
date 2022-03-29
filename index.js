@@ -19,6 +19,9 @@ const scopes = ['https://www.googleapis.com/auth/drive'];
 const auth = new google.auth.JWT(credentialsJSON.client_email, null, credentialsJSON.private_key, scopes);
 const drive = google.drive({ version: 'v3', auth });
 
+console.log(credentials);
+console.log(credentialsJSON.client_email);
+
 const driveLink = `https://drive.google.com/drive/folders/${folder}`
 let filename = target.split('/').pop();
 
