@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const fs = require('fs');
 const archiver = require('archiver');
 
-/** Google Service Account credentials  encoded in base64 */
+/** Google Service Account credentials NOT encoded in base64 */
 const credentials = actions.getInput('credentials', { required: true });
 /** Google Drive Folder ID to upload the file/folder to */
 const folder = actions.getInput('folder', { required: true });
@@ -14,7 +14,7 @@ const name = actions.getInput('name', { required: false });
 /** Link to the Drive folder */
 const link = 'link';
 
-const credentialsJSON = JSON.parse(Buffer.from(credentials, 'base64').toString());
+const credentialsJSON = JSON.parse(credentials);
 const scopes = ['https://www.googleapis.com/auth/drive'];
 const auth = new google.auth.JWT(credentialsJSON.client_email, null, credentialsJSON.private_key, scopes);
 const drive = google.drive({ version: 'v3', auth });
